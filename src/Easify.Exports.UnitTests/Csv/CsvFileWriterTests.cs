@@ -1,15 +1,32 @@
-﻿using System;
+// This software is part of the Easify.Exports Library
+// Copyright (C) 2021 Intermediate Capital Group
+// 
+// This program is free software: you can redistribute it and/or modify
+// it under the terms of the GNU Affero General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+// 
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU Affero General Public License for more details.
+// 
+// You should have received a copy of the GNU Affero General Public License
+// along with this program.  If not, see <http://www.gnu.org/licenses/>.
+// 
+
+using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
 using AutoFixture.Xunit2;
 using CsvHelper.Configuration;
-using Easify.Testing;
-using FluentAssertions;
 using Easify.Exports.Csv;
 using Easify.Exports.Storage;
 using Easify.Exports.UnitTests.Setup;
+using Easify.Testing;
+using FluentAssertions;
 using Microsoft.Extensions.Logging;
 using NSubstitute;
 using NSubstitute.ExceptionExtensions;
@@ -115,10 +132,12 @@ namespace Easify.Exports.UnitTests.Csv
                 },
                 Targets = new[]
                 {
-                    new StorageTarget {TargetLocation = "Target", StorageTargetType = StorageTargetType.InMemory, RetryDelay = 1},
-                    new StorageTarget {TargetLocation = "Target", StorageTargetType = StorageTargetType.S3Bucket, RetryDelay = 2}
+                    new StorageTarget
+                        {TargetLocation = "Target", StorageTargetType = StorageTargetType.InMemory, RetryDelay = 1},
+                    new StorageTarget
+                        {TargetLocation = "Target", StorageTargetType = StorageTargetType.S3Bucket, RetryDelay = 2}
                 },
-                ClassMaps = new []{typeof(SampleEntityMap)}
+                ClassMaps = new[] {typeof(SampleEntityMap)}
             };
             return config;
         }

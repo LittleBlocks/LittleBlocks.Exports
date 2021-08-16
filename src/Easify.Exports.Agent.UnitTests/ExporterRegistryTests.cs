@@ -1,14 +1,31 @@
+// This software is part of the Easify.Exports Library
+// Copyright (C) 2021 Intermediate Capital Group
+// 
+// This program is free software: you can redistribute it and/or modify
+// it under the terms of the GNU Affero General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+// 
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU Affero General Public License for more details.
+// 
+// You should have received a copy of the GNU Affero General Public License
+// along with this program.  If not, see <http://www.gnu.org/licenses/>.
+// 
+
 using System;
 using System.Linq;
 using System.Threading.Tasks;
 using AutoFixture.Xunit2;
-using Easify.Testing;
-using FluentAssertions;
 using Easify.Exports.Agent.Notifications;
 using Easify.Exports.Client.Exceptions;
 using Easify.Exports.Common;
 using Easify.Exports.Csv;
 using Easify.Exports.Storage;
+using Easify.Testing;
+using FluentAssertions;
 using Microsoft.Extensions.Logging;
 using NSubstitute;
 using Xunit;
@@ -27,14 +44,14 @@ namespace Easify.Exports.Agent.UnitTests
         {
             // ARRANGE
             serviceProvider.GetService(Arg.Any<Type>()).Returns(sampleExporter);
-            
+
             // ACT
             sut.Register<SampleExporter>(exportMetadata);
 
             // ASSERT
             sut.Build(exportMetadata.ExportId).Should().BeOfType<SampleExporter>();
-        }        
-        
+        }
+
         [Theory]
         [AutoSubstituteAndData]
         public void Should_Build_ReturnTheObjectMadeFromContainer_WhenTheMappingIsAvailable(
@@ -46,15 +63,15 @@ namespace Easify.Exports.Agent.UnitTests
             // ARRANGE
             serviceProvider.GetService(Arg.Any<Type>()).Returns(sampleExporter);
             sut.Register<SampleExporter>(exportMetadata);
-            
+
             // ACT
             var actual = sut.Build(exportMetadata.ExportId);
 
             // ASSERT
             actual.Should().BeOfType<SampleExporter>();
             serviceProvider.Received().GetService(typeof(SampleExporter));
-        } 
-        
+        }
+
         [Theory]
         [AutoSubstituteAndData]
         public void Should_Build_ThrowError_WhenTheMappingIsNotAvailable(
@@ -65,7 +82,7 @@ namespace Easify.Exports.Agent.UnitTests
         {
             // ARRANGE
             serviceProvider.GetService(Arg.Any<Type>()).Returns(sampleExporter);
-            
+
             // ACT
             Action action = () => sut.Build(exportMetadata.ExportId);
 
@@ -112,15 +129,15 @@ namespace Easify.Exports.Agent.UnitTests
 
         public class SampleExporter : ExporterBase
         {
-            
+            public SampleExporter(IReportNotifierBuilder reportNotifierBuilder, ILogger<ExporterBase> logger) : base(
+                reportNotifierBuilder, logger)
+            {
+            }
+
             protected override Task<ExportResult> InternalRunAsync(ExportExecutionContext context,
                 StorageTarget[] storageTargets)
             {
-                throw new System.NotImplementedException();
-            }
-
-            public SampleExporter(IReportNotifierBuilder reportNotifierBuilder, ILogger<ExporterBase> logger) : base(reportNotifierBuilder, logger)
-            {
+                throw new NotImplementedException();
             }
         }
     }

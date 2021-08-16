@@ -1,13 +1,30 @@
-﻿using System;
+// This software is part of the Easify.Exports Library
+// Copyright (C) 2021 Intermediate Capital Group
+// 
+// This program is free software: you can redistribute it and/or modify
+// it under the terms of the GNU Affero General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+// 
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU Affero General Public License for more details.
+// 
+// You should have received a copy of the GNU Affero General Public License
+// along with this program.  If not, see <http://www.gnu.org/licenses/>.
+// 
+
+using System;
 using System.Collections.Generic;
 using System.Security.Principal;
 using System.Threading.Tasks;
-using Easify.Http;
-using Easify.RestEase;
-using FluentAssertions;
 using Easify.Exports.Agent.Notifications;
 using Easify.Exports.Client;
 using Easify.Exports.Common;
+using Easify.Http;
+using Easify.RestEase;
+using FluentAssertions;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Xunit;
@@ -21,11 +38,11 @@ namespace Easify.Exports.Agent.UnitTests
         {
             // ARRANGE
             var services = new ServiceCollection();
-            
+
             services.AddOptions().Configure<Exporters>(c => c.ExporterUrl1 = "http://localhost");
             services.AddTransient<IRequestContext, FakeRequestContext>();
             services.AddTransient<IRestClientBuilder, RestClientBuilder>();
-            
+
             services.AddExporterBuilder<Exporters>((builder, c) =>
             {
                 builder.AddClient("exporter#1", c.ExporterUrl1);
@@ -41,14 +58,14 @@ namespace Easify.Exports.Agent.UnitTests
 
             // ASSERT
             exporter.Should().NotBeNull();
-        }        
-        
+        }
+
         [Fact]
         public void Should_AddExporters_AddTheBuilderCorrectlyToTheContainer()
         {
             // ARRANGE
             var services = new ServiceCollection();
-            
+
             services.AddOptions().Configure<Exporters>(c => c.ExporterUrl1 = "http://localhost");
             services.AddTransient<IRequestContext, FakeRequestContext>();
             services.AddTransient<IRestClientBuilder, RestClientBuilder>();
@@ -85,22 +102,21 @@ namespace Easify.Exports.Agent.UnitTests
 
         public class Sample
         {
-            
         }
 
         public class SampleExporter : CsvStorageExporter<Sample>
         {
-            public SampleExporter(IFileExporter fileExporter, IReportNotifierBuilder reportNotifierBuilder, ILogger<CsvStorageExporter<Sample>> logger) : base(fileExporter, reportNotifierBuilder, logger)
+            public SampleExporter(IFileExporter fileExporter, IReportNotifierBuilder reportNotifierBuilder,
+                ILogger<CsvStorageExporter<Sample>> logger) : base(fileExporter, reportNotifierBuilder, logger)
             {
-            }
-
-            protected override Task<IEnumerable<Sample>> PrepareDataAsync(ExportExecutionContext executionContext)
-            {
-                throw new System.NotImplementedException();
             }
 
             protected override string ExportFilePrefix => string.Empty;
+
+            protected override Task<IEnumerable<Sample>> PrepareDataAsync(ExportExecutionContext executionContext)
+            {
+                throw new NotImplementedException();
+            }
         }
-            
     }
 }

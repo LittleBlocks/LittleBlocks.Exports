@@ -1,11 +1,28 @@
+// This software is part of the Easify.Exports Library
+// Copyright (C) 2021 Intermediate Capital Group
+// 
+// This program is free software: you can redistribute it and/or modify
+// it under the terms of the GNU Affero General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+// 
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU Affero General Public License for more details.
+// 
+// You should have received a copy of the GNU Affero General Public License
+// along with this program.  If not, see <http://www.gnu.org/licenses/>.
+// 
+
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using Easify.Testing;
 using Easify.Exports.Agent.Notifications;
 using Easify.Exports.Common;
 using Easify.Exports.Csv;
 using Easify.Exports.Storage;
+using Easify.Testing;
 using Microsoft.Extensions.Logging;
 using NSubstitute;
 using Xunit;
@@ -14,34 +31,11 @@ namespace Easify.Exports.Agent.UnitTests
 {
     public class CsvStorageExporterTests : IClassFixture<FixtureBase>
     {
+        private readonly FixtureBase _fixture;
+
         public CsvStorageExporterTests(FixtureBase fixture)
         {
             _fixture = fixture;
-        }
-
-        private readonly FixtureBase _fixture;
-
-        public class Sample
-        {
-        }
-
-        public class SampleCsvExporter : CsvStorageExporter<Sample>
-        {
-            private readonly Func<IEnumerable<Sample>> _dataProvider;
-
-            public SampleCsvExporter(IFileExporter fileExporter, Func<IEnumerable<Sample>> dataProvider,
-                IReportNotifierBuilder notifierBuilder,
-                ILogger<CsvStorageExporter<Sample>> logger) : base(fileExporter, notifierBuilder, logger)
-            {
-                _dataProvider = dataProvider;
-            }
-
-            protected override async Task<IEnumerable<Sample>> PrepareDataAsync(ExportExecutionContext executionContext)
-            {
-                return _dataProvider();
-            }
-
-            protected override string ExportFilePrefix => "Sample";
         }
 
         [Fact]
@@ -96,7 +90,7 @@ namespace Easify.Exports.Agent.UnitTests
 
         private static ExportExecutionContext CreateContext()
         {
-            return new ExportExecutionContext(Guid.NewGuid(), Guid.NewGuid(), DateTime.Today,
+            return new(Guid.NewGuid(), Guid.NewGuid(), DateTime.Today,
                 "http://localhost", "http://localhost");
         }
 
@@ -107,7 +101,7 @@ namespace Easify.Exports.Agent.UnitTests
             var context = CreateContext();
             var targets = _fixture.FakeEntityList<StorageTarget>(2).ToArray();
             var fileExporter = _fixture.Fake<IFileExporter>();
-            
+
             var reportNotifier = _fixture.Fake<IReportNotifier>();
             var reportNotifierBuilder = _fixture.Fake<IReportNotifierBuilder>();
             reportNotifierBuilder.NotificationFor(Arg.Any<string>(), Arg.Any<FailNotification>())
@@ -135,7 +129,7 @@ namespace Easify.Exports.Agent.UnitTests
             var fileExporter = _fixture.Fake<IFileExporter>();
             fileExporter.ExportAsync(samples, Arg.Any<ExporterOptions>())
                 .Returns(ExportResult.Success("targetFolder", 10));
-            
+
             var reportNotifier = _fixture.Fake<IReportNotifier>();
             var reportNotifierBuilder = _fixture.Fake<IReportNotifierBuilder>();
             reportNotifierBuilder.NotificationFor(Arg.Any<string>(), Arg.Any<SuccessNotification>())
@@ -150,6 +144,29 @@ namespace Easify.Exports.Agent.UnitTests
             // ASSERT
             await fileExporter.Received()
                 .ExportAsync(samples, Arg.Any<ExporterOptions>());
+        }
+
+        public class Sample
+        {
+        }
+
+        public class SampleCsvExporter : CsvStorageExporter<Sample>
+        {
+            private readonly Func<IEnumerable<Sample>> _dataProvider;
+
+            public SampleCsvExporter(IFileExporter fileExporter, Func<IEnumerable<Sample>> dataProvider,
+                IReportNotifierBuilder notifierBuilder,
+                ILogger<CsvStorageExporter<Sample>> logger) : base(fileExporter, notifierBuilder, logger)
+            {
+                _dataProvider = dataProvider;
+            }
+
+            protected override string ExportFilePrefix => "Sample";
+
+            protected override async Task<IEnumerable<Sample>> PrepareDataAsync(ExportExecutionContext executionContext)
+            {
+                return _dataProvider();
+            }
         }
     }
 }
