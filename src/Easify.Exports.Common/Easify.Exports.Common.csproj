@@ -6,6 +6,8 @@
         <Title>Easify.Exports.Common</Title>
         <Authors>Mohammad Moattar, Lewis Percival</Authors>
         <LangVersion>9</LangVersion>
+        <PackageProjectUrl>https://github.com/icgam/Easify.Exports</PackageProjectUrl>
+        <RepositoryUrl>https://github.com/icgam/Easify.Exports</RepositoryUrl>
     </PropertyGroup>
 
     <ItemGroup>

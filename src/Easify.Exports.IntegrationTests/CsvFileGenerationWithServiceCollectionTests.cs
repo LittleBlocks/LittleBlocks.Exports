@@ -105,7 +105,7 @@ namespace Easify.Exports.IntegrationTests
         // TODO: Should be revised
         public async Task Should_ExportAsync_UploadTheFileInAws()
         {
-            var configPath = Path.Combine(Path.GetDirectoryName(GetType().Assembly.Location), "appsettings.json");
+            var configPath = Path.Combine(Path.GetDirectoryName(GetType().Assembly.Location) ?? string.Empty, "appsettings.json");
             var entities = _fixture.FakeEntityList<SampleEntity>(5);
             var configuration = new ConfigurationBuilder().AddJsonFile(configPath, false).Build();
             var storageTargets = new[] {
@@ -133,7 +133,7 @@ namespace Easify.Exports.IntegrationTests
         [Fact]
         public async Task Should_ExportAsync_UploadTheFileInAzureBlobStorageWithSharedKey()
         {
-            var configPath = Path.Combine(Path.GetDirectoryName(GetType().Assembly.Location), "appsettings.json");
+            var configPath = Path.Combine(Path.GetDirectoryName(GetType().Assembly.Location) ?? string.Empty, "appsettings.json");
             var entities = _fixture.FakeEntityList<SampleEntity>(5);
             var configuration = new ConfigurationBuilder().AddJsonFile(configPath, false).Build();
             var storageTargets = new[] {
@@ -163,7 +163,7 @@ namespace Easify.Exports.IntegrationTests
         [Fact]
         public async Task Should_ExportAsync_UploadTheFileInAzureBlobStorageWithAzureAd()
         {
-            var configPath = Path.Combine(Path.GetDirectoryName(GetType().Assembly.Location), "appsettings.json");
+            var configPath = Path.Combine(Path.GetDirectoryName(GetType().Assembly.Location) ?? string.Empty, "appsettings.json");
             var entities = _fixture.FakeEntityList<SampleEntity>(5);
             var configuration = new ConfigurationBuilder().AddJsonFile(configPath, false).Build();
             var storageTargets = new[] {
