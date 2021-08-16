@@ -3,7 +3,7 @@
     <PropertyGroup>
         <TargetFramework>netstandard2.0</TargetFramework>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-        <Title>ICG.DataFeeds.Exports.Common</Title>
+        <Title>Easify.Exports.Common</Title>
         <Authors>Mohammad Moattar, Lewis Percival</Authors>
         <LangVersion>9</LangVersion>
     </PropertyGroup>
