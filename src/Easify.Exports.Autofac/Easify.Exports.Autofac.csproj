@@ -5,6 +5,7 @@
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
         <Title>ICG.DataFeeds.Exports.Autofac</Title>
         <Authors>Mohammad Moattar</Authors>
+        <LangVersion>9</LangVersion>
     </PropertyGroup>
 
     <ItemGroup>

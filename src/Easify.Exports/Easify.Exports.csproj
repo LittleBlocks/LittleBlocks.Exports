@@ -5,6 +5,7 @@
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
         <Title>Easify.Exports</Title>
         <Authors>Mohammad Moattar, Lewis Percival</Authors>
+        <LangVersion>9</LangVersion>
     </PropertyGroup>
 
     <ItemGroup>

@@ -5,6 +5,7 @@
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
         <Title>ICG.DataFeeds.Exports.Common</Title>
         <Authors>Mohammad Moattar, Lewis Percival</Authors>
+        <LangVersion>9</LangVersion>
     </PropertyGroup>
 
     <ItemGroup>
