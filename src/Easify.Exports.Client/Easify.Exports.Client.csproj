@@ -1,0 +1,23 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>netstandard2.0</TargetFramework>
+        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+        <Title>Easify.Exports.Client</Title>
+        <Authors>Mohammad Moattar, Lewis Percival</Authors>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <PackageReference Include="coverlet.collector" Version="3.1.0">
+        <PrivateAssets>all</PrivateAssets>
+        <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      </PackageReference>
+      <PackageReference Include="Easify.RestEase" Version="1.0.19" />
+      <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="2.0.0" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\Easify.Exports.Common\Easify.Exports.Common.csproj" />
+    </ItemGroup>
+
+</Project>
