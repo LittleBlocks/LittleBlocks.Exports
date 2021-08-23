@@ -31,7 +31,7 @@ namespace Easify.Exports.Extensions
             {
                 return JsonConvert.SerializeObject(t);
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 return t.ToString();
             }

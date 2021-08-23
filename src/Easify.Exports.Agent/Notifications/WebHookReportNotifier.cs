@@ -38,13 +38,11 @@ namespace Easify.Exports.Agent.Notifications
 
         public async Task RunAsync()
         {
-            using (var client = new HttpClient())
-            {
-                var content = JsonConvert.SerializeObject(_payload);
-                var httpContent = new StringContent(content, Encoding.UTF8, "application/json");
+            using var client = new HttpClient();
+            var content = JsonConvert.SerializeObject(_payload);
+            var httpContent = new StringContent(content, Encoding.UTF8, "application/json");
 
-                await client.PostAsync(_url, httpContent);
-            }
+            await client.PostAsync(_url, httpContent);
         }
     }
 }

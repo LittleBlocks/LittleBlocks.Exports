@@ -132,9 +132,9 @@ namespace Easify.Exports.Agent.UnitTests
 
             protected override string ExportFilePrefix => "TestPrefix";
 
-            protected override async Task<IEnumerable<Sample>> PrepareDataAsync(ExporterOptions options)
+            protected override Task<IEnumerable<Sample>> PrepareDataAsync(ExporterOptions options)
             {
-                return _dataProvider();
+                return Task.FromResult(_dataProvider());
             }
         }
     }

@@ -144,10 +144,10 @@ namespace Easify.Exports.Agent.UnitTests
             protected override string[] Schemas => new[] {"schema1", "schema2"};
             protected override string ViewPrefix => "vw_";
 
-            protected override async Task<ViewExportResult<Sample>> PrepareDataAsync(string viewPrefix, string schema,
+            protected override Task<ViewExportResult<Sample>> PrepareDataAsync(string viewPrefix, string schema,
                 string viewName, ExporterOptions options)
             {
-                return _dataProvider();
+                return Task.FromResult(_dataProvider());
             }
         }
     }

@@ -36,7 +36,6 @@ namespace Easify.Exports.UnitTests.Csv
         public async Task Should_ExportAsync_Succeed_WhenTheInputAndTheConfigurationIsCorrect(
             SampleEntity[] entities,
             ExporterOptions exporterOptions,
-            [Frozen] ICsvFileWriter fileWriter,
             [Frozen] ICsvExportConfigurationBuilder configurationBuilder,
             CsvFileExporter sut)
         {

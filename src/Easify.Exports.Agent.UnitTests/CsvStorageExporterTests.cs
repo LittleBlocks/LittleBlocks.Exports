@@ -88,12 +88,6 @@ namespace Easify.Exports.Agent.UnitTests
             await reportNotifier.Received().RunAsync();
         }
 
-        private static ExportExecutionContext CreateContext()
-        {
-            return new(Guid.NewGuid(), Guid.NewGuid(), DateTime.Today,
-                "http://localhost", "http://localhost");
-        }
-
         [Fact]
         public async Task Should_RunAsync_ReportsFailureAndReason_WhenThereIsExceptionInLoadingData()
         {
@@ -145,6 +139,13 @@ namespace Easify.Exports.Agent.UnitTests
             await fileExporter.Received()
                 .ExportAsync(samples, Arg.Any<ExporterOptions>());
         }
+        
+        
+        private static ExportExecutionContext CreateContext()
+        {
+            return new(Guid.NewGuid(), Guid.NewGuid(), DateTime.Today,
+                "http://localhost", "http://localhost");
+        }
 
         public class Sample
         {
@@ -156,16 +157,16 @@ namespace Easify.Exports.Agent.UnitTests
 
             public SampleCsvExporter(IFileExporter fileExporter, Func<IEnumerable<Sample>> dataProvider,
                 IReportNotifierBuilder notifierBuilder,
-                ILogger<CsvStorageExporter<Sample>> logger) : base(fileExporter, notifierBuilder, logger)
+                ILogger<SampleCsvExporter> logger) : base(fileExporter, notifierBuilder, logger)
             {
                 _dataProvider = dataProvider;
             }
 
             protected override string ExportFilePrefix => "Sample";
 
-            protected override async Task<IEnumerable<Sample>> PrepareDataAsync(ExportExecutionContext executionContext)
+            protected override Task<IEnumerable<Sample>> PrepareDataAsync(ExportExecutionContext executionContext)
             {
-                return _dataProvider();
+                return Task.FromResult(_dataProvider());
             }
         }
     }
