@@ -26,7 +26,6 @@ namespace Easify.Exports.Csv
         public StorageTarget[] Targets { get; set; } = { };
         public string FileName { get; set; }
         public CsvConfiguration Configuration { get; set; }
-
         public Type[] ClassMaps { get; set; } = { };
         public string DateTimeFormat { get; set; }
     }

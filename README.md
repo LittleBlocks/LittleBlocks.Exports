@@ -29,7 +29,7 @@ or
 Install-Package Easify.Exports.Client
 ```
 
-The **AddExporterBuilder** extension method will help on registering the required exporters
+The **AddExporterBuilder** extension method will help with registering the required exporters
 
 ```c#
 public class Exporters

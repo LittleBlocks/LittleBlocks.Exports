@@ -51,7 +51,6 @@ namespace Easify.Exports.UnitTests
 
             // ASSERT
             sut.Resolve(StorageTargetType.LocalDisk).Should().NotBeNull();
-
             sut.Resolve(StorageTargetType.InMemory).Should().BeNull();
             sut.Resolve(StorageTargetType.S3Bucket).Should().BeNull();
         }
@@ -73,7 +72,6 @@ namespace Easify.Exports.UnitTests
 
             // ASSERT
             sut.Resolve(StorageTargetType.InMemory).Should().NotBeNull();
-
             sut.Resolve(StorageTargetType.LocalDisk).Should().BeNull();
             sut.Resolve(StorageTargetType.S3Bucket).Should().BeNull();
         }
