@@ -22,10 +22,4 @@ namespace Easify.Exports.UnitTests.Setup
         public int Id { get; set; }
         public string Name { get; set; }
     }
-
-    public class SampleEntity2
-    {
-        public int Id { get; set; }
-        public string Name { get; set; }
-    }
 }
