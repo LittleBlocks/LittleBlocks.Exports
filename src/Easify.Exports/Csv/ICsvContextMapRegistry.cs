@@ -1,5 +1,5 @@
-// This software is part of the Easify.Exports Library
-// Copyright (C) 2021 Intermediate Capital Group
+// This software is part of the LittleBlocks.Exports Library
+// Copyright (C) 2021 LittleBlocks
 // 
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as published by
@@ -17,7 +17,7 @@
 
 using CsvHelper.Configuration;
 
-namespace Easify.Exports.Csv
+namespace LittleBlocks.Exports.Csv
 {
     public interface ICsvContextMapRegistry
     {

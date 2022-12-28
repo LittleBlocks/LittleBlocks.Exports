@@ -1,6 +1,6 @@
-# Easify Exports
+# LittleBlocks Exports
 
-The repo contains a series of Easify componenets which are providing the export functionality of any data source to CsV files targeted to 
+The repo contains a series of LittleBlocks componenets which are providing the export functionality of any data source to CsV files targeted to 
   - S3, 
   - Azure Blob
   - File Share 
@@ -20,13 +20,13 @@ The client library provides the common structure which is shared between Domain 
 The client library contains all the registration and client access library for the scheduler to talk to Exporters in different domain API.
 
 ```cmd
-dotnet add package Easify.Exports.Client
+dotnet add package LittleBlocks.Exports.Client
 ```
 
 or
 
 ```cmd
-Install-Package Easify.Exports.Client
+Install-Package LittleBlocks.Exports.Client
 ```
 
 The **AddExporterBuilder** extension method will help with registering the required exporters
@@ -56,13 +56,13 @@ builder.Build("name of the client")
 The Agent library contains all the registration and base services to provides Export functionality to each domains.
 
 ```cmd
-dotnet add package Easify.Exports.Agent
+dotnet add package LittleBlocks.Exports.Agent
 ```
 
 or
 
 ```cmd
-Install-Package Easify.Exports.Agent
+Install-Package LittleBlocks.Exports.Agent
 ```
 
 Adding exporters metadata to the configuration will help to define multiple target source for the exporter so the exporter can export the files in multiple location.
@@ -201,9 +201,9 @@ The library provides a BlobStorage interface to underlying store such as S3 Buck
 It can be setup with installing the following package:
 
 ```cmd
-dotnet add package Easify.Exports
+dotnet add package LittleBlocks.Exports
 or
-Install-Package Easify.Exports
+Install-Package LittleBlocks.Exports
 ```
 
 The following setup, register the related classes and configuration for S3 bucket store
@@ -233,7 +233,7 @@ Then by injecting **IBlobStorage**, you can work with the underlying store for c
 
 > **NOTE #1:** There are other extensions such as _AddLocalDiskStorage_ or _AddInMemoryStorage_ available for local file storage or even in memory which is suitable for unit and integration testing.
 
-> **NOTE #2:** The same extensions have been provided for Autofac which is provided in _Easify.Exports.Autofac_ package.
+> **NOTE #2:** The same extensions have been provided for Autofac which is provided in _LittleBlocks.Exports.Autofac_ package.
 
 ### Csv Export
 
@@ -242,9 +242,9 @@ The csv facilities, enable the users to export a list of objects to a CSv repres
 To enable this for an application, install the package
 
 ```cmd
-dotnet add package Easify.Exports
+dotnet add package LittleBlocks.Exports
 or
-Install-Package Easify.Exports
+Install-Package LittleBlocks.Exports
 ```
 
 Now by setting up the Csv related set of classes in the container, It can be used by calling applications:

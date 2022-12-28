@@ -1,0 +1,26 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>netstandard2.0</TargetFramework>
+        <Title>LittleBlocks.Exports.Agent</Title>
+        <Authors>Mohammad Moattar, Lewis Percival</Authors>
+        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+        <LangVersion>9</LangVersion>
+        <PackageProjectUrl>https://github.com/LittleBlocks/LittleBlocks.Exports</PackageProjectUrl>
+        <RepositoryUrl>https://github.com/LittleBlocks/LittleBlocks.Exports</RepositoryUrl>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\LittleBlocks.Exports.Client\LittleBlocks.Exports.Client.csproj" />
+      <ProjectReference Include="..\LittleBlocks.Exports.Common\LittleBlocks.Exports.Common.csproj" />
+      <ProjectReference Include="..\LittleBlocks.Exports\LittleBlocks.Exports.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="coverlet.collector" Version="3.1.0">
+        <PrivateAssets>all</PrivateAssets>
+        <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      </PackageReference>
+    </ItemGroup>
+
+</Project>

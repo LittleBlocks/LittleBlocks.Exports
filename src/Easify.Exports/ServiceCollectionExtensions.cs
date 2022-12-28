@@ -1,5 +1,5 @@
-// This software is part of the Easify.Exports Library
-// Copyright (C) 2021 Intermediate Capital Group
+// This software is part of the LittleBlocks.Exports Library
+// Copyright (C) 2021 LittleBlocks
 // 
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as published by
@@ -16,17 +16,17 @@
 // 
 
 using System;
-using Easify.Exports.Csv;
-using Easify.Exports.Storage;
-using Easify.Exports.Storage.Fluent.AzureBlobs;
-using Easify.Exports.Storage.Fluent.S3;
-using Easify.Exports.Storage.Fluent.S3.Fluent;
+using LittleBlocks.Exports.Csv;
+using LittleBlocks.Exports.Storage;
+using LittleBlocks.Exports.Storage.Fluent.AzureBlobs;
+using LittleBlocks.Exports.Storage.Fluent.S3;
+using LittleBlocks.Exports.Storage.Fluent.S3.Fluent;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using Storage.Net;
 
-namespace Easify.Exports
+namespace LittleBlocks.Exports
 {
     public static class ServiceCollectionExtensions
     {
