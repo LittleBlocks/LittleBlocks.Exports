@@ -5,17 +5,13 @@
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
         <Title>LittleBlocks.Exports.Autofac</Title>
         <Authors>Mohammad Moattar</Authors>
-        <LangVersion>9</LangVersion>
+        <LangVersion>default</LangVersion>
         <PackageProjectUrl>https://github.com/LittleBlocks/LittleBlocks.Exports</PackageProjectUrl>
         <RepositoryUrl>https://github.com/LittleBlocks/LittleBlocks.Exports</RepositoryUrl>
     </PropertyGroup>
 
     <ItemGroup>
       <PackageReference Include="Autofac" Version="6.2.0" />
-      <PackageReference Include="coverlet.collector" Version="3.1.0">
-        <PrivateAssets>all</PrivateAssets>
-        <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-      </PackageReference>
     </ItemGroup>
 
     <ItemGroup>

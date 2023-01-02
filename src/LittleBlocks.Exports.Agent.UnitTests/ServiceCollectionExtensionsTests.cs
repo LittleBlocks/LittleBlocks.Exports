@@ -98,6 +98,7 @@ namespace LittleBlocks.Exports.Agent.UnitTests
         {
             public IPrincipal User { get; }
             public string CorrelationId { get; }
+            public string AuthorizationHeader { get; }
         }
 
         public class Sample

@@ -76,7 +76,7 @@ namespace LittleBlocks.Exports.UnitTests.Csv
             // Act
             Func<Task> func = async () => await sut.WriteFileAsync(entities, config);
 
-            func.Should().Throw<StorageTargetException>()
+            await func.Should().ThrowAsync<StorageTargetException>()
                 .Where(m => m.Message.StartsWith("Error in writing the file to multiple storage."))
                 .Where(m =>
                     m.Exceptions.Count() == 1 &&
@@ -108,7 +108,7 @@ namespace LittleBlocks.Exports.UnitTests.Csv
             // Act
             Func<Task> func = async () => await sut.WriteFileAsync(entities, config);
 
-            func.Should().Throw<StorageTargetException>()
+            await func.Should().ThrowAsync<StorageTargetException>()
                 .Where(m => m.Message.StartsWith("Error in writing the file to multiple storage. Error"))
                 .Where(m =>
                     m.Exceptions.Count() == 1 &&
@@ -161,7 +161,7 @@ namespace LittleBlocks.Exports.UnitTests.Csv
             Func<Task> func = async () => await sut.WriteFileAsync(entities, config);
 
             // Assert
-            func.Should().Throw<StorageTargetException>()
+            await func.Should().ThrowAsync<StorageTargetException>()
                 .Where(m => m.Message.StartsWith("Error in writing the file to multiple storage"));
             logger.Received(3);
             await storageTargetBucket.Received(4).WriteAsync("Target", config.FileName, Arg.Any<byte[]>());

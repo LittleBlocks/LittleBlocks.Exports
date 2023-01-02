@@ -53,7 +53,7 @@ namespace LittleBlocks.Exports.Client.UnitTests
             exporter.Should().NotBeNull();
         }
 
-        public class Exporters
+        private class Exporters
         {
             public string ExporterUrl1 { get; set; } = "http://localhost/export1";
             public string ExporterUrl2 { get; set; } = "http://localhost/export2";
@@ -63,6 +63,7 @@ namespace LittleBlocks.Exports.Client.UnitTests
         {
             public IPrincipal User { get; }
             public string CorrelationId { get; }
+            public string AuthorizationHeader { get; }
         }
     }
 }
