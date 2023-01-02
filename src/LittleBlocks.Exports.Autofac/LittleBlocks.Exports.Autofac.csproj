@@ -1,0 +1,21 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>netstandard2.0</TargetFramework>
+        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+        <Title>LittleBlocks.Exports.Autofac</Title>
+        <Authors>Mohammad Moattar</Authors>
+        <LangVersion>default</LangVersion>
+        <PackageProjectUrl>https://github.com/LittleBlocks/LittleBlocks.Exports</PackageProjectUrl>
+        <RepositoryUrl>https://github.com/LittleBlocks/LittleBlocks.Exports</RepositoryUrl>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <PackageReference Include="Autofac" Version="6.2.0" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\LittleBlocks.Exports\LittleBlocks.Exports.csproj" />
+    </ItemGroup>
+
+</Project>

@@ -1,0 +1,19 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>netstandard2.0</TargetFramework>
+        <Title>LittleBlocks.Exports.Agent</Title>
+        <Authors>Mohammad Moattar, Lewis Percival</Authors>
+        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+        <LangVersion>default</LangVersion>
+        <PackageProjectUrl>https://github.com/LittleBlocks/LittleBlocks.Exports</PackageProjectUrl>
+        <RepositoryUrl>https://github.com/LittleBlocks/LittleBlocks.Exports</RepositoryUrl>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\LittleBlocks.Exports.Client\LittleBlocks.Exports.Client.csproj" />
+      <ProjectReference Include="..\LittleBlocks.Exports.Common\LittleBlocks.Exports.Common.csproj" />
+      <ProjectReference Include="..\LittleBlocks.Exports\LittleBlocks.Exports.csproj" />
+    </ItemGroup>
+
+</Project>
