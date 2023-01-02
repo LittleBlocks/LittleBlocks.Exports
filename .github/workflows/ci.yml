@@ -2,15 +2,15 @@ name: CI on Branches and PRs
 
 on:
   workflow_dispatch:
-    branches-ignore: [ master ]
+    branches-ignore: [master]
     paths: "src/**"
 
   push:
-    branches-ignore: [ master ]
+    branches-ignore: [master]
     paths: "src/**"
 
   pull_request:
-    branches: [ master ]
+    branches: [master]
     paths: "src/**"
 
 jobs:
@@ -24,11 +24,11 @@ jobs:
       - name: Install GitVersion
         uses: gittools/actions/gitversion/setup@v0.9.7
         with:
-          versionSpec: "5.5.x"
+          versionSpec: "5.8.x"
       - name: Setup .NET Core
-        uses: actions/setup-dotnet@v1
+        uses: actions/setup-dotnet@v2
         with:
-          dotnet-version: "3.1.x"
+          dotnet-version: "6.0.x"
       - name: Install dependencies
         run: dotnet restore src
       - name: Use GitVersion
