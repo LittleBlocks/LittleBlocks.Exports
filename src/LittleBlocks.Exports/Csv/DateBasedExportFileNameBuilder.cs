@@ -23,7 +23,7 @@ namespace LittleBlocks.Exports.Csv
     {
         public string Build(ExporterOptions options)
         {
-            if (options == null) throw new ArgumentNullException(nameof(options));
+            ArgumentNullException.ThrowIfNull(options);
 
             var format = options.FileNameDateTimeFormat ?? ExporterDefaults.DefaultFileNameDateTimeFormat;
             return $"{options.ExportFilePrefix}{options.AsOfDate.ToString(format)}.csv";

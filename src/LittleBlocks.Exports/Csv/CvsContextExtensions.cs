@@ -26,8 +26,8 @@ namespace LittleBlocks.Exports.Csv
     {
         public static void SetupFromCsvConfiguration(this CsvContext context, CsvExportConfiguration configuration)
         {
-            if (context == null) throw new ArgumentNullException(nameof(context));
-            if (configuration == null) throw new ArgumentNullException(nameof(configuration));
+            ArgumentNullException.ThrowIfNull(context);
+            ArgumentNullException.ThrowIfNull(configuration);
 
             configuration.ClassMaps.ToList().ForEach(cm => context.RegisterClassMap(cm));
 

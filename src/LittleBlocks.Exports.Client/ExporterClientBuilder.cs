@@ -40,8 +40,8 @@ namespace LittleBlocks.Exports.Client
 
         public IExporterClientRegistry AddClient(string name, string clientUrl)
         {
-            if (name == null) throw new ArgumentNullException(nameof(name));
-            if (clientUrl == null) throw new ArgumentNullException(nameof(clientUrl));
+            ArgumentNullException.ThrowIfNull(name);
+            ArgumentNullException.ThrowIfNull(clientUrl);
 
             if (_exporterCache.ContainsKey(name))
                 throw new DuplicateExporterException($"Duplicate exporter with name {name} exists in the cache");

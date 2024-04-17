@@ -19,10 +19,5 @@ using System;
 
 namespace LittleBlocks.Exports.Storage
 {
-    public sealed class StorageTargetNotFoundException : Exception
-    {
-        public StorageTargetNotFoundException(string message) : base(message)
-        {
-        }
-    }
+    public sealed class StorageTargetNotFoundException(string message) : Exception(message);
 }

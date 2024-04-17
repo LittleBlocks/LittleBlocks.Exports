@@ -22,14 +22,9 @@ using System.Text;
 
 namespace LittleBlocks.Exports.Csv
 {
-    public class StorageTargetException : Exception
+    public class StorageTargetException(IEnumerable<Exception> exceptions) : Exception(FormatMessage(exceptions))
     {
-        public StorageTargetException(IEnumerable<Exception> exceptions) : base(FormatMessage(exceptions))
-        {
-            Exceptions = exceptions ?? throw new ArgumentNullException(nameof(exceptions));
-        }
-
-        public IEnumerable<Exception> Exceptions { get; }
+        public IEnumerable<Exception> Exceptions { get; } = exceptions ?? throw new ArgumentNullException(nameof(exceptions));
 
         private static string FormatMessage(IEnumerable<Exception> exceptions)
         {

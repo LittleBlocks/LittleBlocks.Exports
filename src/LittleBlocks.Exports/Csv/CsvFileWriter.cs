@@ -43,8 +43,8 @@ namespace LittleBlocks.Exports.Csv
 
         public async Task WriteFileAsync<T>(IEnumerable<T> items, CsvExportConfiguration configuration) where T : class
         {
-            if (items == null) throw new ArgumentNullException(nameof(items));
-            if (configuration == null) throw new ArgumentNullException(nameof(configuration));
+            ArgumentNullException.ThrowIfNull(items);
+            ArgumentNullException.ThrowIfNull(configuration);
 
             var enumerable = items as T[] ?? items.ToArray();
 
@@ -120,20 +120,18 @@ namespace LittleBlocks.Exports.Csv
         {
             _logger.LogInformation($"Generating file content for {typeof(T)} output");
 
-            using (var stream = new MemoryStream())
-            using (var writer = new StreamWriter(stream))
-            using (var csvWriter = new CsvWriter(writer, configuration.Configuration))
-            {
-                csvWriter.Context.SetupFromCsvConfiguration(configuration);
+            using var stream = new MemoryStream();
+            await using var writer = new StreamWriter(stream);
+            await using var csvWriter = new CsvWriter(writer, configuration.Configuration);
+            csvWriter.Context.SetupFromCsvConfiguration(configuration);
 
-                await csvWriter.WriteRecordsAsync(items);
-                await csvWriter.FlushAsync();
-                await writer.FlushAsync();
-                await stream.FlushAsync();
+            await csvWriter.WriteRecordsAsync(items);
+            await csvWriter.FlushAsync();
+            await writer.FlushAsync();
+            await stream.FlushAsync();
 
-                stream.Position = 0;
-                return stream.ToByteArray();
-            }
+            stream.Position = 0;
+            return stream.ToByteArray();
         }
     }
 }

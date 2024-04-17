@@ -32,7 +32,7 @@ namespace LittleBlocks.Exports.Csv
 
         public static ExportResult Fail(string error, string targetFile = null)
         {
-            if (error == null) throw new ArgumentNullException(nameof(error));
+            ArgumentNullException.ThrowIfNull(error);
 
             return new ExportResult
             {
@@ -44,8 +44,8 @@ namespace LittleBlocks.Exports.Csv
 
         public static ExportResult Success(string targetFile, int recordCount)
         {
-            if (targetFile == null) throw new ArgumentNullException(nameof(targetFile));
-            if (recordCount <= 0) throw new ArgumentOutOfRangeException(nameof(recordCount));
+            ArgumentNullException.ThrowIfNull(targetFile);
+            ArgumentOutOfRangeException.ThrowIfNegativeOrZero(recordCount);
 
             return new ExportResult
             {

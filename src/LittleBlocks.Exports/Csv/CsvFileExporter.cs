@@ -42,8 +42,8 @@ namespace LittleBlocks.Exports.Csv
 
         public async Task<ExportResult> ExportAsync<T>(IEnumerable<T> items, ExporterOptions options) where T : class
         {
-            if (items == null) throw new ArgumentNullException(nameof(items));
-            if (options == null) throw new ArgumentNullException(nameof(options));
+            ArgumentNullException.ThrowIfNull(items);
+            ArgumentNullException.ThrowIfNull(options);
 
             var entities = items as T[] ?? items.ToArray();
             if (!entities.Any())
