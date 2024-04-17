@@ -129,35 +129,7 @@ namespace LittleBlocks.Exports.IntegrationTests
                 .Be(
                     $"Error in creating export configuration '{typeof(SampleEntity2)}'. Make sure the ClassMap has been registered");
         }
-
-        // [Fact]
-        // TODO: Should be revised
-        public async Task Should_ExportAsync_UploadTheFileInAws()
-        {
-            var configPath = Path.Combine(Path.GetDirectoryName(GetType().Assembly.Location) ?? string.Empty,
-                "appsettings.json");
-            var entities = _fixture.FakeEntityList<SampleEntity>(5);
-            var configuration = new ConfigurationBuilder().AddJsonFile(configPath, false).Build();
-            var storageTargets = new[]
-            {
-                new StorageTarget
-                {
-                    TargetLocation = "Mezz/Valuations/Automated/", StorageTargetType = StorageTargetType.S3Bucket
-                }
-            };
-            var services = new ServiceCollection();
-            services.AddLogging();
-            services.AddS3BucketStorageWithSamlSupport(configuration);
-            services.AddCsv(c => { c.Register<SampleEntityMap, SampleEntity>(); });
-
-            var serviceProvider = services.BuildServiceProvider();
-            var sut = serviceProvider.GetRequiredService<IFileExporter>();
-
-            var actual = await sut.ExportAsync(entities, new ExporterOptions(DateTime.Today, storageTargets));
-
-            actual.Should().NotBe(null);
-        }
-
+        
         [Fact]
         public async Task Should_ExportAsync_UploadTheFileInAzureBlobStorageWithSharedKey()
         {
@@ -169,7 +141,7 @@ namespace LittleBlocks.Exports.IntegrationTests
             {
                 new StorageTarget
                 {
-                    TargetLocation = "mezz/valuations/automated/", StorageTargetType = StorageTargetType.BlobStorage
+                    TargetLocation = "test/targets/automated/", StorageTargetType = StorageTargetType.BlobStorage
                 }
             };
             var services = new ServiceCollection();
@@ -198,7 +170,7 @@ namespace LittleBlocks.Exports.IntegrationTests
             {
                 new StorageTarget
                 {
-                    TargetLocation = "mezz/valuations/manual/", StorageTargetType = StorageTargetType.BlobStorage
+                    TargetLocation = "test/targets/manual/", StorageTargetType = StorageTargetType.BlobStorage
                 }
             };
             var services = new ServiceCollection();
@@ -206,31 +178,6 @@ namespace LittleBlocks.Exports.IntegrationTests
             services.AddAccountWithAzureAdStorage(configuration);
             services.AddCsv(c => { c.Register<SampleEntityMap, SampleEntity>(); });
             services.AddTransient(sp => _fixture.Fake<ICsvFileWriter>());
-
-            var serviceProvider = services.BuildServiceProvider();
-            var sut = serviceProvider.GetRequiredService<IFileExporter>();
-
-            var actual = await sut.ExportAsync(entities, new ExporterOptions(DateTime.Today, storageTargets));
-
-            actual.Should().NotBe(null);
-            actual.HasError.Should().BeFalse();
-        }
-
-        //[Fact]
-        public async Task Should_ExportAsync_UploadTheFileInAzureBlobStorageWithEmulator()
-        {
-            var entities = _fixture.FakeEntityList<SampleEntity>(5);
-            var storageTargets = new[]
-            {
-                new StorageTarget
-                {
-                    TargetLocation = "mezz/valuations/manual/", StorageTargetType = StorageTargetType.BlobStorage
-                }
-            };
-            var services = new ServiceCollection();
-            services.AddLogging();
-            services.AddAccountWithEmulatorStorage();
-            services.AddCsv(c => { c.Register<SampleEntityMap, SampleEntity>(); });
 
             var serviceProvider = services.BuildServiceProvider();
             var sut = serviceProvider.GetRequiredService<IFileExporter>();

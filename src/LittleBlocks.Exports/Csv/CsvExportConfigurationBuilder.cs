@@ -40,7 +40,7 @@ namespace LittleBlocks.Exports.Csv
 
         public CsvExportConfiguration Build<T>(ExporterOptions options)
         {
-            if (options == null) throw new ArgumentNullException(nameof(options));
+            ArgumentNullException.ThrowIfNull(options);
 
             var classMap = _csvContextMapResolver.Resolve<T>();
             if (classMap == null)

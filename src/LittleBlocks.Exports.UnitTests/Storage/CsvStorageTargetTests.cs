@@ -34,10 +34,10 @@ namespace LittleBlocks.Exports.UnitTests.Storage
         {
             // Arrange
             var sut = new GenericCsvStorageTarget(StorageTargetType.InMemory, blobStorage);
-            var expected = "Mezz/Valuation/File.csv";
+            var expected = "Test/Storage/File.csv";
 
             // Act
-            await sut.WriteAsync("Mezz/Valuation/", "File.csv", new byte[] {1, 12, 123});
+            await sut.WriteAsync("Test/Storage/", "File.csv", new byte[] {1, 12, 123});
 
             // Assert
             await blobStorage.Received(1)

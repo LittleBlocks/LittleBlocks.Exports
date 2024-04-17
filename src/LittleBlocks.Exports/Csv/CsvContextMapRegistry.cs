@@ -17,6 +17,7 @@
 
 using System;
 using System.Collections.Concurrent;
+using System.Collections.Generic;
 using CsvHelper.Configuration;
 
 namespace LittleBlocks.Exports.Csv
@@ -34,7 +35,7 @@ namespace LittleBlocks.Exports.Csv
 
         public Type Resolve<T>()
         {
-            return _registry.TryGetValue(typeof(T), out var map) ? map : null;
+            return _registry.GetValueOrDefault(typeof(T));
         }
     }
 }

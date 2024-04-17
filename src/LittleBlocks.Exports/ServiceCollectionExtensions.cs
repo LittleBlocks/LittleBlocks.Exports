@@ -57,7 +57,7 @@ namespace LittleBlocks.Exports
         public static IServiceCollection AddS3BucketStorageWithSamlSupport(this IServiceCollection services,
             IConfiguration configuration, Action<IHaveProfile> configure = null)
         {
-            if (services == null) throw new ArgumentNullException(nameof(services));
+            ArgumentNullException.ThrowIfNull(services);
 
             var options = new BucketOptions();
             configuration.GetSection(nameof(BucketOptions)).Bind(options);
@@ -78,7 +78,7 @@ namespace LittleBlocks.Exports
         public static IServiceCollection AddS3BucketStorage(this IServiceCollection services,
             IConfiguration configuration, Action<IHaveProfile> configure = null)
         {
-            if (services == null) throw new ArgumentNullException(nameof(services));
+            ArgumentNullException.ThrowIfNull(services);
 
             var options = new BucketOptions();
             configuration.GetSection(nameof(BucketOptions)).Bind(options);
@@ -98,7 +98,7 @@ namespace LittleBlocks.Exports
         public static IServiceCollection AddAccountWithSharedKeyStorage(this IServiceCollection services,
             IConfiguration configuration, Action<IHaveSharedKeyAccount> configure = null)
         {
-            if (services == null) throw new ArgumentNullException(nameof(services));
+            ArgumentNullException.ThrowIfNull(services);
 
             var options = new BlobSharedKeyOptions();
             configuration.GetSection(nameof(BlobSharedKeyOptions)).Bind(options);
@@ -118,7 +118,7 @@ namespace LittleBlocks.Exports
         public static IServiceCollection AddAccountWithAzureAdStorage(this IServiceCollection services,
             IConfiguration configuration, Action<IHaveAzureAdAccount> configure = null)
         {
-            if (services == null) throw new ArgumentNullException(nameof(services));
+            ArgumentNullException.ThrowIfNull(services);
 
             var options = new BlobAzureAdOptions();
             configuration.GetSection(nameof(BlobAzureAdOptions)).Bind(options);
@@ -138,7 +138,7 @@ namespace LittleBlocks.Exports
 
         public static IServiceCollection AddAccountWithEmulatorStorage(this IServiceCollection services)
         {
-            if (services == null) throw new ArgumentNullException(nameof(services));
+            ArgumentNullException.ThrowIfNull(services);
 
             services.TryAddTransient<ICsvStorageTargetResolver, CsvStorageTargetResolver>();
             services.AddTransient<ICsvStorageTarget>(sp =>
@@ -152,7 +152,7 @@ namespace LittleBlocks.Exports
 
         public static IServiceCollection AddInMemoryStorage(this IServiceCollection services)
         {
-            if (services == null) throw new ArgumentNullException(nameof(services));
+            ArgumentNullException.ThrowIfNull(services);
 
             services.TryAddTransient<ICsvStorageTargetResolver, CsvStorageTargetResolver>();
             services.AddScoped<ICsvStorageTarget>(sp =>
@@ -166,7 +166,7 @@ namespace LittleBlocks.Exports
 
         public static IServiceCollection AddLocalDiskStorage(this IServiceCollection services)
         {
-            if (services == null) throw new ArgumentNullException(nameof(services));
+            ArgumentNullException.ThrowIfNull(services);
 
             services.TryAddTransient<ICsvStorageTargetResolver, CsvStorageTargetResolver>();
             services.AddScoped<ICsvStorageTarget, LocalDiskCsvStorageTarget>();

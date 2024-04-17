@@ -33,7 +33,7 @@ namespace LittleBlocks.Exports.Storage
 
         public ICsvStorageTarget Resolve(StorageTargetType storageTargetType)
         {
-            return _exports.ContainsKey(storageTargetType) ? _exports[storageTargetType] : null;
+            return _exports.GetValueOrDefault(storageTargetType);
         }
     }
 }

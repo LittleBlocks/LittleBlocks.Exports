@@ -41,9 +41,9 @@ namespace LittleBlocks.Exports.Storage
 
         public async Task WriteAsync(string targetLocation, string fileName, byte[] fileContent)
         {
-            if (targetLocation == null) throw new ArgumentNullException(nameof(targetLocation));
-            if (fileName == null) throw new ArgumentNullException(nameof(fileName));
-            if (fileContent == null) throw new ArgumentNullException(nameof(fileContent));
+            ArgumentNullException.ThrowIfNull(targetLocation);
+            ArgumentNullException.ThrowIfNull(fileName);
+            ArgumentNullException.ThrowIfNull(fileContent);
 
             var filePath = Path.Combine(targetLocation, fileName);
             await _blobStorage.WriteAsync(filePath, fileContent);

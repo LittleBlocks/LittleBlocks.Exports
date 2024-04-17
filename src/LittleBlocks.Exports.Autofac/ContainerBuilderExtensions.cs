@@ -52,7 +52,7 @@ namespace LittleBlocks.Exports.Autofac
         public static ContainerBuilder RegisterS3BucketStorageWithSamlSupport(this ContainerBuilder builder,
             IConfiguration configuration, Action<IHaveProfile> configure)
         {
-            if (builder == null) throw new ArgumentNullException(nameof(builder));
+            ArgumentNullException.ThrowIfNull(builder);
 
             var options = new BucketOptions();
             configuration.GetSection(nameof(BucketOptions)).Bind(options);
@@ -74,7 +74,7 @@ namespace LittleBlocks.Exports.Autofac
         public static ContainerBuilder RegisterS3BucketStorage(this ContainerBuilder builder,
             IConfiguration configuration, Action<IHaveProfile> configure)
         {
-            if (builder == null) throw new ArgumentNullException(nameof(builder));
+            ArgumentNullException.ThrowIfNull(builder);
 
             var options = new BucketOptions();
             configuration.GetSection(nameof(BucketOptions)).Bind(options);
@@ -94,7 +94,7 @@ namespace LittleBlocks.Exports.Autofac
 
         public static ContainerBuilder RegisterInMemoryStorage(this ContainerBuilder builder)
         {
-            if (builder == null) throw new ArgumentNullException(nameof(builder));
+            ArgumentNullException.ThrowIfNull(builder);
 
             builder.RegisterType<CsvStorageTargetResolver>().IfNotRegistered(typeof(CsvStorageTargetResolver))
                 .AsImplementedInterfaces();
@@ -109,7 +109,7 @@ namespace LittleBlocks.Exports.Autofac
 
         public static ContainerBuilder RegisterLocalDiskStorage(this ContainerBuilder builder)
         {
-            if (builder == null) throw new ArgumentNullException(nameof(builder));
+            ArgumentNullException.ThrowIfNull(builder);
 
             builder.RegisterType<CsvStorageTargetResolver>().IfNotRegistered(typeof(CsvStorageTargetResolver))
                 .AsImplementedInterfaces();

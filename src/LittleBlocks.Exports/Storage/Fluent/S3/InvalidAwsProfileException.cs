@@ -19,10 +19,5 @@ using System;
 
 namespace LittleBlocks.Exports.Storage.Fluent.S3
 {
-    public class InvalidAwsProfileException : Exception
-    {
-        public InvalidAwsProfileException(string message) : base(message)
-        {
-        }
-    }
+    public class InvalidAwsProfileException(string message) : Exception(message);
 }
